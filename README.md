@@ -14,7 +14,7 @@
   </p>
 
   [![Online Demo](https://img.shields.io/badge/🌐-Project%20Page-3977dd)](https://xxxxxxdprnet.github.io/DPRNet/)
-  [![arxiv paper](https://img.shields.io/badge/arxiv-2508.00443-orange)](https://arxiv.org/abs/2412.01463)
+  [![arxiv paper](https://img.shields.io/badge/arxiv-2412.01463-orange)](https://arxiv.org/abs/2412.01463)
   [![license](https://img.shields.io/badge/license-MIT-A7D8DE)](https://opensource.org/license/MIT)
  
 
