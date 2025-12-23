@@ -1,0 +1,72 @@
+#### general settings
+name: DPRNet_hdrplus480p
+use_tb_logger: true
+model: sr
+distortion: sr
+scale: s
+gpu_ids: [0]
+
+#### datasets
+datasets:
+  train:
+    name: HDRplus
+    mode: LQGT_enhance
+    dataroot_GT: "/.../hdrplus_new/train/gt"
+    dataroot_LQ: "/.../hdrplus_new/train/input"
+    use_shuffle: true
+    n_workers: 16
+    batch_size: 4
+    color: RGB
+    pad32: False
+  val:
+    name: HDRplus
+    mode: LQGT_enhance
+    dataroot_GT: "/.../hdrplus_new/test/gt"
+    dataroot_LQ: "/.../hdrplus_new/test/input"
+    pad32: False
+#### network structures
+network_G:
+  which_model_G: DPRNet
+  in_nc: 3
+  out_nc: 3
+
+#### path
+path:
+  root: 
+  pretrain_model_G: ~
+  strict_load: true
+  resume_state: ~
+
+#### training settings: learning rate scheme, loss
+train:
+  lr_G: !!float 1e-4
+  lr_scheme: MultiStepLR # MultiStepLR | CosineAnnealingLR_Restart
+  beta1: 0.9
+  beta2: 0.99
+  niter: 400000
+  warmup_iter: -1  # no warm up
+  lr_scheme: MultiStepLR
+  lr_steps: [200000, 250000, 300000, 350000]
+  lr_gamma: 0.5
+
+  pixel_criterion: l1
+  pixel_weight: 1.0
+
+  hf_criterion: l1
+  hf_weight: 0.2
+
+  feature_criterion: vgg
+  feature_weight: 1.0
+  ssim_criterion: mssim
+  ssim_weight: 1.0
+  
+  lf_weight: 0.8
+
+  manual_seed: 10
+  val_freq: !!float 3e3
+
+#### logger
+logger:
+  print_freq: 100
+  save_checkpoint_freq: !!float 3e3
+

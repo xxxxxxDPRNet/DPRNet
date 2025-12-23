@@ -1,0 +1,25 @@
+#### general settings
+name: DPRNet_hdrplus480p
+suffix: ~  # add suffix to saved images
+model: sr
+distortion: sr
+scale: 1
+gpu_ids: [0]
+
+datasets:
+  val:
+    name: HDRplus
+    mode: LQGT_enhance
+    dataroot_GT: "/.../hdrplus_new/test/gt"
+    dataroot_LQ: "/.../hdrplus_new/test/input"
+    pad32: False
+#### network structures
+network_G:
+  which_model_G: DPRNet_grid4
+  in_nc: 3
+  out_nc: 3
+
+#### path
+path:
+  root: 
+  pretrain_model_G: experiments/DPRNet_hdrplus480p.pth
